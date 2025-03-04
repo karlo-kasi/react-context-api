@@ -1,7 +1,9 @@
 // import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react"
-import axios from "axios";
+// import { useState, useEffect } from "react"
+// import axios from "axios";
+import { useEffect } from "react";
+import { useGlobalContext } from "../../context/GlobalContext";
 
 const SinglePost = () => {
 
@@ -9,19 +11,22 @@ const SinglePost = () => {
 
     const navigate = useNavigate();
 
-    const [singlePost, setSinglePost] = useState(
-        {
-            id: " ",
-            title: " ",
-            content: " ",
-            image: " ",
-            tags: []
-        }
-    )
+    // const [singlePost, setSinglePost] = useState(
+    //     {
+    //         id: " ",
+    //         title: " ",
+    //         content: " ",
+    //         image: " ",
+    //         tags: []
+    //     }
+    // )
+
+    const { singlePost, getPostID } = useGlobalContext()
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/posts/${id}`)
-            .then(res => setSinglePost(res.data))
+        // axios.get(`http://localhost:3000/posts/${id}`)
+        //     .then(res => setSinglePost(res.data))
+        getPostID(id)
     }, [id])
 
     return (
